@@ -14,13 +14,21 @@ class Category extends Model
 
     protected $fillable = ['title', 'created_at'];
 
-    public function getCreatedAtAttribute($date)
-    {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d-m-Y');
-    }
+//    public function getCreatedAtAttribute($date)
+//    {
+//        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d-m-Y');
+//    }
+//
+//    public function getUpdatedAtAttribute($date)
+//    {
+//        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d-m-Y');
+//    }
 
-    public function getUpdatedAtAttribute($date)
+    protected function createdAt(): Attribute
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d-m-Y');
+        return Attribute::make(
+            get: fn($value) => Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y'),
+            set: fn($value) => Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d-m-Y')
+        );
     }
 }
