@@ -18,11 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::resource('categories', \App\Http\Controllers\CategoryController::class);
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::resource('categories', \App\Http\Controllers\CategoryController::class)->middleware('is_admin');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -30,4 +29,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
