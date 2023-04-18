@@ -28,6 +28,9 @@
                             <th scope="col" class="px-6 py-3">
                                 Updated at
                             </th>
+                            <th scope="col" class="px-6 py-3">
+                                Actions
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -71,6 +74,7 @@
                         @endforelse
                         </tbody>
                     </table>
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>
