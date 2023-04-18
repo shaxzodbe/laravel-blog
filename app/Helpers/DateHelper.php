@@ -6,9 +6,9 @@ use Carbon\Carbon;
 
 class DateHelper
 {
-    public static function convertToDB($value)
+    public static function convertToDB($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:m:s', $value)
+        return Carbon::createFromFormat('Y-m-d H:m:s', $date)
             ->format('d-m-Y');
     }
 }
