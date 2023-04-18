@@ -21,10 +21,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-    Route::group(['middleware' => ['is_admin']], function () {
-        Route::resource('categories', \App\Http\Controllers\CategoryController::class);
-        Route::resource('posts', \App\Http\Controllers\PostController::class);
-    });
+    Route::resource('posts', \App\Http\Controllers\PostController::class);
 });
 
 Route::middleware('auth')->group(function () {
