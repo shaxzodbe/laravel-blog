@@ -20,6 +20,9 @@
                                 ID
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Creator name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Content
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -40,6 +43,9 @@
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $post->id }}
                                 </th>
+                                <td class="px-6 py-4">
+                                    {{ $post->project->name }}
+                                </td>
                                 <td class="px-6 py-4">
                                     {{ $post->content }}
                                 </td>

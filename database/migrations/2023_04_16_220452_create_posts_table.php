@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->text('content');
+            $table->foreignId('project_id')->constrained();
             $table->timestamps();
         });
     }

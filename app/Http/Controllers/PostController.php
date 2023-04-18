@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\Project;
 
 class PostController extends Controller
 {
@@ -13,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate();
+        $posts = Post::with('project')->latest()->paginate();
         return view('posts.index', compact('posts'));
     }
 
@@ -22,7 +23,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $projects = Project::with('posts')->get();
+        return view('posts.create', compact('projects'));
     }
 
     /**
@@ -47,7 +49,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        $projects = Project::with('posts')->get();
+        return view('posts.edit', compact('post', 'projects'));
     }
 
     /**

@@ -12,15 +12,18 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['content', 'created_at', 'updated_at'];
+    protected $fillable = ['content', 'project_id', 'created_at', 'updated_at'];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 
     protected function createdAt(): Attribute
     {
         return Attribute::make(
             get: fn($value) => Carbon::createFromFormat('Y-m-d H:m:s', $value)
                 ->format('d-m-Y'),
-//            set: fn($value) => Carbon::createFromFormat('Y-m-d H:m:s', $value)
-//                ->format('d-m-Y')
         );
     }
 
@@ -31,4 +34,5 @@ class Post extends Model
                 ->format('d-m-Y'),
         );
     }
+
 }

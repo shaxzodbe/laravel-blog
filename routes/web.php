@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     Route::resource('posts', \App\Http\Controllers\PostController::class);
+    Route::resource('projects', \App\Http\Controllers\ProjectController::class);
 });
 
 Route::middleware('auth')->group(function () {

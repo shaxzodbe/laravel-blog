@@ -23,6 +23,7 @@ class StorePostRequest extends FormRequest
     {
         return [
             'content' => 'required|string|min:3|max:255',
+            'project_id' => 'required'
         ];
     }
 }
