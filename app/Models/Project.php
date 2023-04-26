@@ -15,4 +15,9 @@ class Project extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function categories()
+    {
+        return $this->hasManyThrough(Category::class, Post::class);
+    }
 }

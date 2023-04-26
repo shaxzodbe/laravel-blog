@@ -18,6 +18,11 @@ class Post extends Model
         return $this->belongsTo(Project::class);
     }
 
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
     protected function createdAt(): Attribute
     {
         return Attribute::make(
