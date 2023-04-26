@@ -6,6 +6,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\Project;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -41,7 +42,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('', compact('post'));
     }
 
     /**
