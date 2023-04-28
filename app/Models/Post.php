@@ -13,6 +13,8 @@ class Post extends Model
 
     protected $fillable = ['content', 'project_id', 'created_at', 'updated_at'];
 
+    protected $touches = ['project'];
+
     public function project()
     {
         return $this->belongsTo(Project::class);
