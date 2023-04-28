@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -59,4 +60,18 @@ class User extends Authenticatable
     }
 
     // Used with $user->createdAtDiff;
+
+    public function name(): Attribute
+    {
+        return new Attribute(
+            set: fn($value) => ucfirst($value)
+        );
+    }
+
+    public function createdAt(): Attribute
+    {
+        return new Attribute(
+            get: fn($value) => Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y H:i:s')
+        );
+    }
 }
