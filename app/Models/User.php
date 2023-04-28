@@ -50,4 +50,13 @@ class User extends Authenticatable
             get: fn() => $this->created_at->diffForHumans()
         );
     }
+
+    // Used with $user->created_at_diff;
+
+    public function getCreatedAtDiffAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
+    // Used with $user->createdAtDiff;
 }
